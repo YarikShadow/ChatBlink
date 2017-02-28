@@ -1,0 +1,6 @@
+framework module Pods_ChatBlinkUITests {
+  umbrella header "Pods-ChatBlinkUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
