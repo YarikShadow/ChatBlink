@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class LoginController: UIViewController {
+class LoginController: UIViewController, UIImagePickerControllerDelegate {
     
 /////// UI Elements
     //Container
@@ -42,6 +42,7 @@ class LoginController: UIViewController {
         let tf = UITextField()
         tf.placeholder = "Name"
         tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.returnKeyType = UIReturnKeyType.done
         return tf
     }()
     
@@ -49,6 +50,7 @@ class LoginController: UIViewController {
         let tf = UITextField()
         tf.placeholder = "Email"
         tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.returnKeyType = UIReturnKeyType.done
         return tf
     }()
     
@@ -56,6 +58,7 @@ class LoginController: UIViewController {
         let tf = UITextField()
         tf.placeholder = "Password"
         tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.returnKeyType = UIReturnKeyType.done
         tf.isSecureTextEntry = true
         return tf
     }()
@@ -76,11 +79,14 @@ class LoginController: UIViewController {
     }()
     
     //image
-    let profileImageView:UIImageView = {
+    lazy var profileImageView:UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "ChatLogonew")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
+        
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
     
@@ -98,23 +104,30 @@ class LoginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
         view.backgroundColor = UIColor(r: CGFloat(61), g: CGFloat(91), b: CGFloat(151))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginController.dismissKeyboard))
+        
+
         
         view.addSubview(inputsContanierView)
         view.addSubview(loginRegisterButton)
         view.addSubview(profileImageView)
         view.addSubview(loginRegisterSegmentedControl)
-        
+        view.addGestureRecognizer(tap)
         
         setupInputsContainerView()
         setupLoginRegisterButton()
         setupProfileImageView()
         setupLoginRegisterSegmentedControl()
-       
         
     }
     
+    func handleSelectProfileImageView() {
+        let picker = UIImagePickerController()
+        present(picker, animated: true, completion: nil)
+    }
     
     func handleLoginRegisterChange(){
         //changing register button
@@ -223,9 +236,12 @@ class LoginController: UIViewController {
     
     func setupProfileImageView() {
         profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        profileImageView.bottomAnchor.constraint(equalTo: loginRegisterSegmentedControl.topAnchor, constant: -12).isActive = true
-        profileImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        profileImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        profileImageView.bottomAnchor.constraint(equalTo: loginRegisterSegmentedControl.topAnchor, constant: -24).isActive = true
+        
+       // profileImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        
+        profileImageView.heightAnchor.constraint(equalToConstant: 120).isActive = true
     }
 
     func setupLoginRegisterButton() {
@@ -294,6 +310,12 @@ class LoginController: UIViewController {
         emailSeparatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
         ////
     }
+    
+    func dismissKeyboard() {
+        
+        view.endEditing(true)
+    }
+    
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent

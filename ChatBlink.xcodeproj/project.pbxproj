@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1ECBE13AD1D19EC188C54CA7 /* Pods_ChatBlinkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D3C114DAAECA327EBDADEF6 /* Pods_ChatBlinkUITests.framework */; };
 		2B9C8C5F3521124B818F59BC /* Pods_ChatBlink.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 618F44D1BF7863743F0DC2B2 /* Pods_ChatBlink.framework */; };
+		8407E9231E66E97300CD57FF /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407E9221E66E97300CD57FF /* NewMessageController.swift */; };
+		8407E9271E66F6DA00CD57FF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407E9261E66F6DA00CD57FF /* User.swift */; };
 		8482C48B1E6636F500D08449 /* ChatLogonew.png in Resources */ = {isa = PBXBuildFile; fileRef = 8482C48A1E6636F500D08449 /* ChatLogonew.png */; };
 		84EC3FF91E658FCE0067A017 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC3FF81E658FCE0067A017 /* AppDelegate.swift */; };
 		84EC3FFB1E658FCE0067A017 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC3FFA1E658FCE0067A017 /* ViewController.swift */; };
@@ -48,6 +50,8 @@
 		618F44D1BF7863743F0DC2B2 /* Pods_ChatBlink.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatBlink.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D3C114DAAECA327EBDADEF6 /* Pods_ChatBlinkUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatBlinkUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		835A4257C0D5ED070DC0572A /* Pods-ChatBlinkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatBlinkTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChatBlinkTests/Pods-ChatBlinkTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8407E9221E66E97300CD57FF /* NewMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
+		8407E9261E66F6DA00CD57FF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8482C48A1E6636F500D08449 /* ChatLogonew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChatLogonew.png; sourceTree = "<group>"; };
 		84EC3FF51E658FCE0067A017 /* ChatBlink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatBlink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84EC3FF81E658FCE0067A017 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +114,24 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8407E9241E66F68500CD57FF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8407E9261E66F6DA00CD57FF /* User.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		8407E9251E66F6B100CD57FF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				84EC3FFA1E658FCE0067A017 /* ViewController.swift */,
+				84EC40261E6594590067A017 /* LoginController.swift */,
+				8407E9221E66E97300CD57FF /* NewMessageController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		84EC3FEC1E658FCD0067A017 = {
 			isa = PBXGroup;
 			children = (
@@ -135,9 +157,9 @@
 		84EC3FF71E658FCE0067A017 /* ChatBlink */ = {
 			isa = PBXGroup;
 			children = (
+				8407E9241E66F68500CD57FF /* Model */,
+				8407E9251E66F6B100CD57FF /* Controllers */,
 				84EC3FF81E658FCE0067A017 /* AppDelegate.swift */,
-				84EC3FFA1E658FCE0067A017 /* ViewController.swift */,
-				84EC40261E6594590067A017 /* LoginController.swift */,
 				84EC3FFC1E658FCE0067A017 /* Main.storyboard */,
 				84EC40281E65AC1F0067A017 /* ChatLogo.png */,
 				8482C48A1E6636F500D08449 /* ChatLogonew.png */,
@@ -464,8 +486,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8407E9231E66E97300CD57FF /* NewMessageController.swift in Sources */,
 				84EC3FFB1E658FCE0067A017 /* ViewController.swift in Sources */,
 				84EC40271E6594590067A017 /* LoginController.swift in Sources */,
+				8407E9271E66F6DA00CD57FF /* User.swift in Sources */,
 				84EC3FF91E658FCE0067A017 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

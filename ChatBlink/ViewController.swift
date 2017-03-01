@@ -14,8 +14,13 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-               
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "logout", style: .plain, target: self, action: #selector(handleLogout))
+               let logoutIamge = UIImage(named: "exit")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: logoutIamge, style: .plain, target: self, action: #selector(handleLogout))
+        
+       
+        let image = UIImage(named: "smallIcon")
+        
+                navigationItem.rightBarButtonItem = UIBarButtonItem(image: image , style: .plain, target: self, action: #selector(handleNewMessage))
         
         checkIfUserLoggedIn()
        
@@ -49,6 +54,12 @@ class ViewController: UITableViewController {
         
       present(loginController, animated: true, completion: nil)
         
+    }
+    
+    func handleNewMessage() {
+        let newMessageController = NewMessageController()
+        let navController = UINavigationController(rootViewController: newMessageController)
+        present(navController, animated: true, completion: nil)
     }
 }
 
