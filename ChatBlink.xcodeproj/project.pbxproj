@@ -11,6 +11,9 @@
 		2B9C8C5F3521124B818F59BC /* Pods_ChatBlink.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 618F44D1BF7863743F0DC2B2 /* Pods_ChatBlink.framework */; };
 		8407E9231E66E97300CD57FF /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407E9221E66E97300CD57FF /* NewMessageController.swift */; };
 		8407E9271E66F6DA00CD57FF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407E9261E66F6DA00CD57FF /* User.swift */; };
+		843A12541E71F07E00A0C614 /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843A12531E71F07E00A0C614 /* TransitionManager.swift */; };
+		843A12561E72008800A0C614 /* SideBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843A12551E72008800A0C614 /* SideBar.swift */; };
+		843A12581E7200CA00A0C614 /* SideBarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843A12571E7200CA00A0C614 /* SideBarTableViewController.swift */; };
 		8482C48B1E6636F500D08449 /* ChatLogonew.png in Resources */ = {isa = PBXBuildFile; fileRef = 8482C48A1E6636F500D08449 /* ChatLogonew.png */; };
 		84EC3FF91E658FCE0067A017 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC3FF81E658FCE0067A017 /* AppDelegate.swift */; };
 		84EC3FFB1E658FCE0067A017 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC3FFA1E658FCE0067A017 /* ViewController.swift */; };
@@ -22,6 +25,7 @@
 		84EC40271E6594590067A017 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC40261E6594590067A017 /* LoginController.swift */; };
 		84EC40291E65AC1F0067A017 /* ChatLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EC40281E65AC1F0067A017 /* ChatLogo.png */; };
 		84EC402B1E65B5C20067A017 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84EC402A1E65B5C20067A017 /* GoogleService-Info.plist */; };
+		84FAC9741E6C6A14009A0F3F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FAC9731E6C6A14009A0F3F /* Extensions.swift */; };
 		B7792598E8BA95EEF02CF7FE /* Pods_ChatBlinkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E40C6947628344FFE99D85C /* Pods_ChatBlinkTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +56,9 @@
 		835A4257C0D5ED070DC0572A /* Pods-ChatBlinkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatBlinkTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChatBlinkTests/Pods-ChatBlinkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8407E9221E66E97300CD57FF /* NewMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		8407E9261E66F6DA00CD57FF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		843A12531E71F07E00A0C614 /* TransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
+		843A12551E72008800A0C614 /* SideBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBar.swift; sourceTree = "<group>"; };
+		843A12571E7200CA00A0C614 /* SideBarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarTableViewController.swift; sourceTree = "<group>"; };
 		8482C48A1E6636F500D08449 /* ChatLogonew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChatLogonew.png; sourceTree = "<group>"; };
 		84EC3FF51E658FCE0067A017 /* ChatBlink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatBlink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84EC3FF81E658FCE0067A017 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +76,7 @@
 		84EC40261E6594590067A017 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		84EC40281E65AC1F0067A017 /* ChatLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ChatLogo.png; path = ../../../Documents/ChatLogo.png; sourceTree = "<group>"; };
 		84EC402A1E65B5C20067A017 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		84FAC9731E6C6A14009A0F3F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B98A36B180CD60E5CBEE79D6 /* Pods-ChatBlinkUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatBlinkUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChatBlinkUITests/Pods-ChatBlinkUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F3DD1F0AC21F194A9F7DD4A4 /* Pods-ChatBlinkUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatBlinkUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChatBlinkUITests/Pods-ChatBlinkUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -128,6 +136,7 @@
 				84EC3FFA1E658FCE0067A017 /* ViewController.swift */,
 				84EC40261E6594590067A017 /* LoginController.swift */,
 				8407E9221E66E97300CD57FF /* NewMessageController.swift */,
+				843A12571E7200CA00A0C614 /* SideBarTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -157,6 +166,7 @@
 		84EC3FF71E658FCE0067A017 /* ChatBlink */ = {
 			isa = PBXGroup;
 			children = (
+				84FAC9721E6C69EE009A0F3F /* Helpers */,
 				8407E9241E66F68500CD57FF /* Model */,
 				8407E9251E66F6B100CD57FF /* Controllers */,
 				84EC3FF81E658FCE0067A017 /* AppDelegate.swift */,
@@ -187,6 +197,16 @@
 				84EC401A1E658FCF0067A017 /* Info.plist */,
 			);
 			path = ChatBlinkUITests;
+			sourceTree = "<group>";
+		};
+		84FAC9721E6C69EE009A0F3F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				84FAC9731E6C6A14009A0F3F /* Extensions.swift */,
+				843A12531E71F07E00A0C614 /* TransitionManager.swift */,
+				843A12551E72008800A0C614 /* SideBar.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		CB3146E8418779921FEEFDA1 /* Frameworks */ = {
@@ -487,7 +507,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8407E9231E66E97300CD57FF /* NewMessageController.swift in Sources */,
+				843A12581E7200CA00A0C614 /* SideBarTableViewController.swift in Sources */,
 				84EC3FFB1E658FCE0067A017 /* ViewController.swift in Sources */,
+				843A12561E72008800A0C614 /* SideBar.swift in Sources */,
+				843A12541E71F07E00A0C614 /* TransitionManager.swift in Sources */,
+				84FAC9741E6C6A14009A0F3F /* Extensions.swift in Sources */,
 				84EC40271E6594590067A017 /* LoginController.swift in Sources */,
 				8407E9271E66F6DA00CD57FF /* User.swift in Sources */,
 				84EC3FF91E658FCE0067A017 /* AppDelegate.swift in Sources */,

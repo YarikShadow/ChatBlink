@@ -32,7 +32,7 @@ class NewMessageController: UITableViewController {
             
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 let user = User()
-                user.setValuesForKeys(dictionary) // Safe way user.name = dictionary["name"]
+                user.setValuesForKeys(dictionary) // Safe way -  user.name = dictionary["name"]
                 self.users.append(user)
                 
                 DispatchQueue.main.async {
@@ -54,17 +54,69 @@ class NewMessageController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell =  tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+        let cell =  tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) //as! UserCell
         
         let user = users[indexPath.row]
         cell.textLabel?.text = user.name
         cell.detailTextLabel?.text = user.email
+        cell.imageView?.image = UIImage(named: "user")
+        cell.imageView?.layer.masksToBounds = true
+        cell.imageView?.layer.cornerRadius = 5
+        
+        
+        //load profileIamges from cashe
+        if let profileImageUrl = user.profileImageUrl {
+            
+            
+            cell.imageView?.loadImageUsingCache(urlString: profileImageUrl)
+            
+            
+//            let url = URLRequest(url: URL(string: profileImageUrl)!)
+//            URLSession.shared.dataTask(with: url) {
+//                (data, response, error) in
+//                if error != nil {
+//                    print(error!)
+//                    return
+//                }
+//                DispatchQueue.main.async {
+////                    cell.profileImageView.image = UIImage(data: data!)
+//                    cell.imageView?.image = UIImage(data: data!)
+//                }
+//            }.resume()
+        }
         return cell
     }
     
-    class UserCell: UITableViewCell {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 56
+    }
+    
+class UserCell: UITableViewCell {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+//        textLabel?.frame = CGRect(x: 56, y: textLabel!.frame.origin.y - 2, width: textLabel!.frame.width, height: textLabel!.frame.height)
+//        detailTextLabel?.frame = CGRect(x: 56, y: textLabel!.frame.origin.y + 2, width: textLabel!.frame.width, height: textLabel!.frame.height)
+    }
+    
+    let profileImageView:UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "user")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 20
+        imageView.layer.masksToBounds = true
+        return imageView
+    }()
+    
         override init(style: UITableViewCellStyle, reuseIdentifier: String?){
             super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+            
+//            addSubview(profileImageView)
+//            
+//            profileImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
+//            profileImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+//            profileImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
+//            profileImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
         }
         
         required init?(coder aDecoder: NSCoder) {
