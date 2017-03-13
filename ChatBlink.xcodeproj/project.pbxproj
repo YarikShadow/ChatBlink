@@ -11,7 +11,8 @@
 		2B9C8C5F3521124B818F59BC /* Pods_ChatBlink.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 618F44D1BF7863743F0DC2B2 /* Pods_ChatBlink.framework */; };
 		8407E9231E66E97300CD57FF /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407E9221E66E97300CD57FF /* NewMessageController.swift */; };
 		8407E9271E66F6DA00CD57FF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407E9261E66F6DA00CD57FF /* User.swift */; };
-		843A12541E71F07E00A0C614 /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843A12531E71F07E00A0C614 /* TransitionManager.swift */; };
+		843731C41E76CEE8004D34EF /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843731C31E76CEE8004D34EF /* ChatLogController.swift */; };
+		843731C61E76D872004D34EF /* launchChat.png in Resources */ = {isa = PBXBuildFile; fileRef = 843731C51E76D872004D34EF /* launchChat.png */; };
 		843A12561E72008800A0C614 /* SideBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843A12551E72008800A0C614 /* SideBar.swift */; };
 		843A12581E7200CA00A0C614 /* SideBarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843A12571E7200CA00A0C614 /* SideBarTableViewController.swift */; };
 		8482C48B1E6636F500D08449 /* ChatLogonew.png in Resources */ = {isa = PBXBuildFile; fileRef = 8482C48A1E6636F500D08449 /* ChatLogonew.png */; };
@@ -56,7 +57,8 @@
 		835A4257C0D5ED070DC0572A /* Pods-ChatBlinkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatBlinkTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChatBlinkTests/Pods-ChatBlinkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8407E9221E66E97300CD57FF /* NewMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		8407E9261E66F6DA00CD57FF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		843A12531E71F07E00A0C614 /* TransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
+		843731C31E76CEE8004D34EF /* ChatLogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
+		843731C51E76D872004D34EF /* launchChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchChat.png; sourceTree = "<group>"; };
 		843A12551E72008800A0C614 /* SideBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBar.swift; sourceTree = "<group>"; };
 		843A12571E7200CA00A0C614 /* SideBarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarTableViewController.swift; sourceTree = "<group>"; };
 		8482C48A1E6636F500D08449 /* ChatLogonew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChatLogonew.png; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				84EC40261E6594590067A017 /* LoginController.swift */,
 				8407E9221E66E97300CD57FF /* NewMessageController.swift */,
 				843A12571E7200CA00A0C614 /* SideBarTableViewController.swift */,
+				843731C31E76CEE8004D34EF /* ChatLogController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 				84EC40281E65AC1F0067A017 /* ChatLogo.png */,
 				8482C48A1E6636F500D08449 /* ChatLogonew.png */,
 				84EC3FFF1E658FCE0067A017 /* Assets.xcassets */,
+				843731C51E76D872004D34EF /* launchChat.png */,
 				84EC40011E658FCE0067A017 /* LaunchScreen.storyboard */,
 				84EC40041E658FCE0067A017 /* Info.plist */,
 				84EC402A1E65B5C20067A017 /* GoogleService-Info.plist */,
@@ -203,7 +207,6 @@
 			isa = PBXGroup;
 			children = (
 				84FAC9731E6C6A14009A0F3F /* Extensions.swift */,
-				843A12531E71F07E00A0C614 /* TransitionManager.swift */,
 				843A12551E72008800A0C614 /* SideBar.swift */,
 			);
 			name = Helpers;
@@ -342,6 +345,7 @@
 				84EC40031E658FCE0067A017 /* LaunchScreen.storyboard in Resources */,
 				84EC402B1E65B5C20067A017 /* GoogleService-Info.plist in Resources */,
 				8482C48B1E6636F500D08449 /* ChatLogonew.png in Resources */,
+				843731C61E76D872004D34EF /* launchChat.png in Resources */,
 				84EC40001E658FCE0067A017 /* Assets.xcassets in Resources */,
 				84EC3FFE1E658FCE0067A017 /* Main.storyboard in Resources */,
 			);
@@ -506,11 +510,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				843731C41E76CEE8004D34EF /* ChatLogController.swift in Sources */,
 				8407E9231E66E97300CD57FF /* NewMessageController.swift in Sources */,
 				843A12581E7200CA00A0C614 /* SideBarTableViewController.swift in Sources */,
 				84EC3FFB1E658FCE0067A017 /* ViewController.swift in Sources */,
 				843A12561E72008800A0C614 /* SideBar.swift in Sources */,
-				843A12541E71F07E00A0C614 /* TransitionManager.swift in Sources */,
 				84FAC9741E6C6A14009A0F3F /* Extensions.swift in Sources */,
 				84EC40271E6594590067A017 /* LoginController.swift in Sources */,
 				8407E9271E66F6DA00CD57FF /* User.swift in Sources */,

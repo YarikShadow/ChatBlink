@@ -9,10 +9,10 @@
 import UIKit
 import Firebase
 
-class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate {
+class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate, UITextFieldDelegate  {
     
     var messageController : ViewController?
-    let transitionManager = TransitionManager()
+
     
 /////// UI Elements
    //Container
@@ -44,30 +44,33 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
     }()
     
     //Textfields "Name" "Email" and "Pass"
-    let nameTextField:UITextField = {
+    lazy var nameTextField:UITextField = {
         let tf = UITextField()
         tf.placeholder = "Name"
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.returnKeyType = UIReturnKeyType.done
+        tf.delegate = self
         tf.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         return tf
     }()
     
-    let emailTextField:UITextField = {
+    lazy var emailTextField:UITextField = {
         let tf = UITextField()
         tf.placeholder = "Email"
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.returnKeyType = UIReturnKeyType.done
+        tf.delegate = self
         tf.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         return tf
     }()
     
-    let passwordTextField:UITextField = {
+    lazy var passwordTextField:UITextField = {
         let tf = UITextField()
         tf.placeholder = "Password"
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.returnKeyType = UIReturnKeyType.done
         tf.isSecureTextEntry = true
+        tf.delegate = self
         tf.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         return tf
     }()
@@ -146,6 +149,10 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
                        gradientLayer.colors = [color1, color2]
                        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
                        gradientLayer.endPoint = CGPoint(x: 0.0, y:1.0)
+        
+//        let scrollView = UIScrollView()
+//        
+//        scrollView.layer.frame = view.layer.frame
         
         view.layer.insertSublayer(gradientLayer, at: 0)
         
@@ -285,7 +292,10 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
                 let imageName = NSUUID().uuidString // set nameID to image 
                 let storageRef = FIRStorage.storage().reference().child("profile_images").child("\(imageName)")
             
-            if let uploadData = UIImagePNGRepresentation(self.profileImageView.image!) {
+            //JPEG Image Compression
+            if let uploadData = UIImageJPEGRepresentation(self.profileImageView.image!, 0.1) {
+            //original PNG
+           // if let uploadData = UIImagePNGRepresentation(self.profileImageView.image!) {
                 
                 storageRef.put(uploadData, metadata: nil , completion:
                     {(metadata, error) in
@@ -329,10 +339,13 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
     }
     
     func handleLogin() {
-        guard let email = emailTextField.text, let password = passwordTextField.text else {
+        if emailTextField.text != ""  && passwordTextField.text != "" {
+            guard let email = emailTextField.text, let password = passwordTextField.text else {
             print("ffff")
             return
-        }
+            }
+       
+    
 
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: {
             (user, error) in
@@ -353,9 +366,17 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
             transition.subtype = kCATransitionFromRight
             self.view.window!.layer.add(transition, forKey: nil)
             
-            self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: false, completion: nil)
             
         })
+            
+        }else {
+            let alert = UIAlertController(title: "Empty fields", message: "Please fill all fields", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alert.addAction(cancelAction)
+            
+            present(alert, animated: true, completion: nil)
+        }
     }
     ///// MARK2 end
     
@@ -463,6 +484,10 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
         view.endEditing(true)
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        handleLoginRegister()
+        return true
+    }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent

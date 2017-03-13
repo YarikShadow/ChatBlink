@@ -13,6 +13,17 @@ class NewMessageController: UITableViewController {
     
     let cellId = "cellId"
     var users = [User]()
+    var messageController:ViewController?
+    
+    let transition: CATransition = { // animation for view transition
+        let tr = CATransition()
+        tr.duration = 0.5
+        tr.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        tr.type = kCATransitionReveal
+        tr.subtype = kCATransitionFromLeft
+        return tr
+        
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +43,7 @@ class NewMessageController: UITableViewController {
             
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 let user = User()
+                user.id = snapshot.key
                 user.setValuesForKeys(dictionary) // Safe way -  user.name = dictionary["name"]
                 self.users.append(user)
                 
@@ -79,7 +91,7 @@ class NewMessageController: UITableViewController {
 //                    return
 //                }
 //                DispatchQueue.main.async {
-////                    cell.profileImageView.image = UIImage(data: data!)
+//                   cell.profileImageView.image = UIImage(data: data!)
 //                    cell.imageView?.image = UIImage(data: data!)
 //                }
 //            }.resume()
@@ -89,6 +101,15 @@ class NewMessageController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 56
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.view.window!.layer.add(transition, forKey: nil)
+        dismiss(animated: true, completion: {
+            let user = self.users[indexPath.row]
+            self.messageController?.showChatController(user: user)
+            print("dismiss completed")
+        })
     }
     
 class UserCell: UITableViewCell {
@@ -111,8 +132,8 @@ class UserCell: UITableViewCell {
         override init(style: UITableViewCellStyle, reuseIdentifier: String?){
             super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
             
-//            addSubview(profileImageView)
-//            
+            addSubview(profileImageView)
+            
 //            profileImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
 //            profileImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
 //            profileImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true

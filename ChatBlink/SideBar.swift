@@ -59,7 +59,7 @@ class SideBar: NSObject, sideBarTableViewControllerDelegate {
         let color2 = UIColor(red: 81.0 / 255.0, green: 74.0 / 255.0, blue: 157.0 / 255.0, alpha: 1.0).cgColor
         
         
-        gradientLayer.frame = self.sideBarTableViewController.tableView.frame
+        gradientLayer.frame = sideBarContainerView.layer.bounds
         gradientLayer.colors = [color1, color2]
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
         gradientLayer.endPoint = CGPoint(x: 0.0, y:1.0)
@@ -68,7 +68,8 @@ class SideBar: NSObject, sideBarTableViewControllerDelegate {
         
         
         sideBarContainerView.frame = CGRect(x: -barWidth - 1, y: originView.frame.origin.y, width: barWidth, height: originView.frame.size.height)
-        sideBarContainerView.backgroundColor = UIColor.clear
+        sideBarContainerView.backgroundColor = UIColor.white
+        sideBarContainerView.layer.insertSublayer(gradientLayer, at: 0)
         sideBarContainerView.clipsToBounds = false
         
         originView?.addSubview(sideBarContainerView)
@@ -81,8 +82,8 @@ class SideBar: NSObject, sideBarTableViewControllerDelegate {
         sideBarTableViewController.tableView.frame = sideBarContainerView.bounds
         sideBarTableViewController.tableView.clipsToBounds  = false
         sideBarTableViewController.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-//        sideBarTableViewController.tableView.backgroundColor = UIColor.blue
-        sideBarTableViewController.tableView.layer.insertSublayer(gradientLayer, at: 0)
+        sideBarTableViewController.tableView.backgroundColor = UIColor.clear
+//        sideBarTableViewController.tableView.layer.insertSublayer(gradientLayer, at: 0)
         sideBarTableViewController.tableView.scrollsToTop  = false
         sideBarTableViewController.tableView.contentInset = UIEdgeInsetsMake(sideBarTableViewTopInset, 0, 0, 0)
         
