@@ -2,7 +2,7 @@
 //  LoginController.swift
 //  ChatBlink
 //
-//  Created by Admin on 28/02/17.
+//  Created by Yaroslav on 28/02/17.
 //  Copyright © 2017 Admin. All rights reserved.
 //
 

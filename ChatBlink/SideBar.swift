@@ -2,7 +2,7 @@
 //  SideBar.swift
 //  ChatBlink
 //
-//  Created by Admin on 10/03/17.
+//  Created by Yaroslav on 10/03/17.
 //  Copyright © 2017 Admin. All rights reserved.
 //
 
@@ -82,7 +82,7 @@ class SideBar: NSObject, sideBarTableViewControllerDelegate {
         sideBarTableViewController.tableView.frame = sideBarContainerView.bounds
         sideBarTableViewController.tableView.clipsToBounds  = false
         sideBarTableViewController.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        sideBarTableViewController.tableView.backgroundColor = UIColor.clear
+        sideBarTableViewController.tableView.backgroundColor = UIColor.red
 //        sideBarTableViewController.tableView.layer.insertSublayer(gradientLayer, at: 0)
         sideBarTableViewController.tableView.scrollsToTop  = false
         sideBarTableViewController.tableView.contentInset = UIEdgeInsetsMake(sideBarTableViewTopInset, 0, 0, 0)

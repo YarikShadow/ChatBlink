@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  ChatBlink
 //
-//  Created by Admin on 28/02/17.
+//  Created by Yaroslav on 28/02/17.
 //  Copyright © 2017 Admin. All rights reserved.
 //
 
@@ -12,7 +12,8 @@ import Firebase
 class ViewController: UITableViewController, SideBarDelegate {
     
     var sideBar:SideBar = SideBar()
-
+    var users = [User]()
+    var messages = [Message]()
     
     let transition: CATransition = { // animation for view transition
         let tr = CATransition()
@@ -27,26 +28,108 @@ class ViewController: UITableViewController, SideBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-               let logoutImage = UIImage(named: "exit")
+        let logoutImage = UIImage(named: "exit")
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: logoutImage, style: .plain, target: self, action: #selector(handleLogout))
         
         
        
         let image = UIImage(named: "smallIcon")
         
-                navigationItem.rightBarButtonItem = UIBarButtonItem(image: image , style: .plain, target: self, action: #selector(handleNewMessage))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: image , style: .plain, target: self, action: #selector(handleNewMessage))
         
         sideBar = SideBar(sourceView: self.view, menuItems:["Day", "Night"])
         sideBar.delegate = self
         
         checkIfUserLoggedIn()
-        
-        
+        observeMessages()
+        fetchUser()
        
     }
     
     
-   
+    // Load data from Firebase
+    func observeMessages() {
+        let ref = FIRDatabase.database().reference().child("messages")
+        ref.observe(.childAdded, with: {(snapshot) in
+            
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+            let message = Message()
+                message.setValuesForKeys(dictionary)
+                self.messages.append(message)
+                
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+
+                
+            }
+        }, withCancel: nil)
+    }
+    
+    func fetchUser() {
+        FIRDatabase.database().reference().child("users").observe(.childAdded, with: {(snapshot) in
+            
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                let user = User()
+                user.id = snapshot.key
+                user.setValuesForKeys(dictionary) // Safe way -  user.name = dictionary["name"]
+                self.users.append(user)
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+            
+            
+            
+        }, withCancel: nil)
+    
+    }
+    ////end
+    
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messages.count
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 72
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cellId")
+       
+        cell.imageView?.image = UIImage(named: "user")
+        cell.imageView?.layer.masksToBounds = true
+        cell.imageView?.layer.cornerRadius = 5
+       
+        let messages =  self.messages[indexPath.row]
+        let user = users[indexPath.row]
+        if let toId = messages.toId {
+            let ref  = FIRDatabase.database().reference().child("users").child(toId)
+            ref.observe(.value, with: { (snapshot) in
+                    
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+               
+                cell.textLabel?.text = dictionary["name"] as? String
+                }
+            }
+            , withCancel: nil)
+           
+        }
+        
+        
+        if let profileImageUrl = user.profileImageUrl {
+            
+            
+            cell.imageView?.loadImageUsingCache(urlString: profileImageUrl)
+        }
+        
+        cell.detailTextLabel?.text = messages.text
+        
+        return cell
+    }
 
     func checkIfUserLoggedIn() {
         
@@ -119,10 +202,10 @@ class ViewController: UITableViewController, SideBarDelegate {
                 view.backgroundColor = UIColor.white
                 sideBar.showSideBar(shouldOpen: false)
         case 1 :
-            view.backgroundColor = UIColor.black
-            sideBar.showSideBar(shouldOpen: false)
+                view.backgroundColor = UIColor.black
+                sideBar.showSideBar(shouldOpen: false)
             
-         default : break
+        default : break
         }
     }
 

@@ -2,7 +2,7 @@
 //  Extentions.swift
 //  ChatBlink
 //
-//  Created by Admin on 05/03/17.
+//  Created by Yaroslav on 05/03/17.
 //  Copyright © 2017 Admin. All rights reserved.
 //
 

@@ -2,7 +2,7 @@
 //  SideBarTableViewController.swift
 //  ChatBlink
 //
-//  Created by Admin on 10/03/17.
+//  Created by Yaroslav on 10/03/17.
 //  Copyright © 2017 Admin. All rights reserved.
 //
 
@@ -34,6 +34,7 @@ class SideBarTableViewController: UITableViewController {
         
         
         var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+        
         if cell == nil {
             cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
             
@@ -48,11 +49,10 @@ class SideBarTableViewController: UITableViewController {
         
         
         cell?.layer.transform = CATransform3DMakeScale(0.1,0.1,1)
-        UIView.animate(withDuration: 0.3, animations: {
-            cell?.layer.transform = CATransform3DMakeScale(1.05, 1.05, 1)
-        }, completion: { finished in
-            UIView.animate(withDuration: 0.1, animations: {
-                cell?.layer.transform = CATransform3DMakeScale(1,1,1)
+            UIView.animate(withDuration: 0.3, animations: { cell?.layer.transform = CATransform3DMakeScale(1.05, 1.05, 1) }, completion: { finished in
+                
+                        UIView.animate(withDuration: 0.1, animations: {
+                            cell?.layer.transform = CATransform3DMakeScale(1,1,1)
             })
         })
         

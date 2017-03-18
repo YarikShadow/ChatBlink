@@ -2,12 +2,13 @@
 //  ChatLogController.swift
 //  ChatBlink
 //
-//  Created by Admin on 13/03/17.
+//  Created by Yaroslav on 13/03/17.
 //  Copyright © 2017 Admin. All rights reserved.
 //
 
 import UIKit
 import Firebase
+import UserNotifications
 
 class ChatLogController: UICollectionViewController, UITextFieldDelegate {
     
@@ -45,6 +46,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate {
     }()
     ////
     
+          
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,6 +60,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate {
         containerView.addSubview(lineSeparatorView)
         setupInputComponetes()
         
+                
     }
     
     func setupInputComponetes(){
@@ -92,7 +95,9 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate {
         let ref = FIRDatabase.database().reference().child("messages")
         let childRef = ref.childByAutoId()
         let toId = user!.id!
-        let values = ["text": inputTextField.text!, "toId": user!.name!]
+        let fromId = FIRAuth.auth()?.currentUser?.uid
+        let time = NSNumber(value: Int(NSDate().timeIntervalSince1970))
+        let values = ["text": inputTextField.text!, "toId": toId, "fromId": fromId!, "time": time] as [String : Any]
         childRef.updateChildValues(values)
         
     }
