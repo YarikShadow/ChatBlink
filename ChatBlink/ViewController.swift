@@ -14,6 +14,7 @@ class ViewController: UITableViewController, SideBarDelegate {
     var sideBar:SideBar = SideBar()
     var users = [User]()
     var messages = [Message]()
+    let cellId = "cellId"
     
     let transition: CATransition = { // animation for view transition
         let tr = CATransition()
@@ -24,12 +25,31 @@ class ViewController: UITableViewController, SideBarDelegate {
         return tr
         
     }()
-
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        let swipeToNewMessage = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeToNewMessageController))
+//        swipeToNewMessage.direction = .right
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeDown.direction = UISwipeGestureRecognizerDirection.down
+        self.view.addGestureRecognizer(swipeDown)
+        
+      //  view.addGestureRecognizer(swipeToNewMessage)
+        
         let logoutImage = UIImage(named: "exit")
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: logoutImage, style: .plain, target: self, action: #selector(handleLogout))
+     
+        tableView.separatorStyle = .singleLine
+    
+        tableView.separatorInset.left = 25
+        tableView.separatorInset.right = 25
+        
         
         
        
@@ -40,12 +60,32 @@ class ViewController: UITableViewController, SideBarDelegate {
         sideBar = SideBar(sourceView: self.view, menuItems:["Day", "Night"])
         sideBar.delegate = self
         
+        
         checkIfUserLoggedIn()
-        observeMessages()
         fetchUser()
+        observeMessages()
+        
        
     }
     
+    
+    
+    func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizerDirection.right:
+                 handleNewMessage()
+            case UISwipeGestureRecognizerDirection.down:
+                 handleNewMessage()
+            case UISwipeGestureRecognizerDirection.left:
+                 handleNewMessage()
+            case UISwipeGestureRecognizerDirection.up:
+                 handleNewMessage()
+            default:
+                break
+            }
+        }
+    }
     
     // Load data from Firebase
     func observeMessages() {
@@ -77,7 +117,7 @@ class ViewController: UITableViewController, SideBarDelegate {
                 self.users.append(user)
                 
                 DispatchQueue.main.async {
-                    self.tableView.reloadData()
+                     self.tableView.reloadData()
                 }
             }
             
@@ -89,30 +129,58 @@ class ViewController: UITableViewController, SideBarDelegate {
     ////end
     
     
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 72
+        return 56
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+       // let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! UserCell
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cellId")
-       
+        
+        self.messages.sort(by: { Int($0.time!) > Int($1.time!) })
+        let messages =  self.messages[indexPath.row]
+        
+        
+        cell.layer.transform = CATransform3DMakeScale(0.1,0.1,1)
+        UIView.animate(withDuration: 0.3, animations: {
+            cell.layer.transform = CATransform3DMakeScale(1.05, 1.05, 1)
+        }, completion: { finished in
+            UIView.animate(withDuration: 0.1, animations: {
+                cell.layer.transform = CATransform3DMakeScale(1,1,1)
+            })
+        })
+
+        cell.contentMode = .center
         cell.imageView?.image = UIImage(named: "user")
         cell.imageView?.layer.masksToBounds = true
-        cell.imageView?.layer.cornerRadius = 5
-       
-        let messages =  self.messages[indexPath.row]
-        let user = users[indexPath.row]
+        
         if let toId = messages.toId {
             let ref  = FIRDatabase.database().reference().child("users").child(toId)
             ref.observe(.value, with: { (snapshot) in
                     
             if let dictionary = snapshot.value as? [String: AnyObject] {
                
-                cell.textLabel?.text = dictionary["name"] as? String
+                    let names  = dictionary["name"] as? String
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+                    let date = NSDate(timeIntervalSince1970: TimeInterval(messages.time!))
+                    cell.detailTextLabel?.text = "From: \(names!) : \(formatter.string(from: date as Date))"
+                
+                
+                    if let profileImageUrl = dictionary["profileImageUrl"] as? String {
+                    
+                    cell.imageView?.loadImageUsingCache(urlString: profileImageUrl)
+                    cell.imageView?.layer.cornerRadius = 15
+                }
+                
+
+                
+                
                 }
             }
             , withCancel: nil)
@@ -120,16 +188,23 @@ class ViewController: UITableViewController, SideBarDelegate {
         }
         
         
-        if let profileImageUrl = user.profileImageUrl {
-            
-            
-            cell.imageView?.loadImageUsingCache(urlString: profileImageUrl)
-        }
+        cell.textLabel?.text = messages.text
+        cell.textLabel?.textColor = UIColor(red: 81.0 / 255.0, green: 74.0 / 255.0, blue: 157.0 / 255.0, alpha: 1.0)
         
-        cell.detailTextLabel?.text = messages.text
+        
         
         return cell
     }
+    
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        self.view.window!.layer.add(transition, forKey: nil)
+//        dismiss(animated: false, completion: {
+//            let user = self.users[indexPath.row]
+//            self.showChatController(user: user)
+//            print("dismiss completed")
+//        })
+//    }
+
 
     func checkIfUserLoggedIn() {
         

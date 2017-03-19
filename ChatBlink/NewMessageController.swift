@@ -30,7 +30,7 @@ class NewMessageController: UITableViewController {
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
         
-        tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
+       // tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
         
         fetchUser()
     }
@@ -58,7 +58,8 @@ class NewMessageController: UITableViewController {
     }
     
     func handleCancel() {
-        dismiss(animated: true, completion: nil)
+        self.view.window!.layer.add(transition, forKey: nil)
+        dismiss(animated: false, completion: nil)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -66,14 +67,28 @@ class NewMessageController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell =  tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) //as! UserCell
+        //let cell =  tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) //as! UserCell
+        
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cellId")
         
         let user = users[indexPath.row]
+        
+        cell.layer.transform = CATransform3DMakeScale(0.1,0.1,1)
+        UIView.animate(withDuration: 0.3, animations: {
+            cell.layer.transform = CATransform3DMakeScale(1.05, 1.05, 1)
+        }, completion: { finished in
+            UIView.animate(withDuration: 0.1, animations: {
+                cell.layer.transform = CATransform3DMakeScale(1,1,1)
+            })
+        })
+
+        
         cell.textLabel?.text = user.name
         cell.detailTextLabel?.text = user.email
+        cell.detailTextLabel?.textColor = UIColor(red: 81.0 / 255.0, green: 74.0 / 255.0, blue: 157.0 / 255.0, alpha: 1.0)
         cell.imageView?.image = UIImage(named: "user")
         cell.imageView?.layer.masksToBounds = true
-        cell.imageView?.layer.cornerRadius = 5
+        
         
         
         //load profileIamges from cashe
@@ -81,7 +96,7 @@ class NewMessageController: UITableViewController {
             
             
             cell.imageView?.loadImageUsingCache(urlString: profileImageUrl)
-            
+            cell.imageView?.layer.cornerRadius = 15
             
 //            let url = URLRequest(url: URL(string: profileImageUrl)!)
 //            URLSession.shared.dataTask(with: url) {
@@ -105,44 +120,11 @@ class NewMessageController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.view.window!.layer.add(transition, forKey: nil)
-        dismiss(animated: true, completion: {
+        dismiss(animated: false, completion: {
             let user = self.users[indexPath.row]
             self.messageController?.showChatController(user: user)
             print("dismiss completed")
         })
     }
     
-class UserCell: UITableViewCell {
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-//        textLabel?.frame = CGRect(x: 56, y: textLabel!.frame.origin.y - 2, width: textLabel!.frame.width, height: textLabel!.frame.height)
-//        detailTextLabel?.frame = CGRect(x: 56, y: textLabel!.frame.origin.y + 2, width: textLabel!.frame.width, height: textLabel!.frame.height)
-    }
-    
-    let profileImageView:UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "user")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 20
-        imageView.layer.masksToBounds = true
-        return imageView
-    }()
-    
-        override init(style: UITableViewCellStyle, reuseIdentifier: String?){
-            super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
-            
-            addSubview(profileImageView)
-            
-//            profileImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
-//            profileImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-//            profileImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
-//            profileImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        }
-        
-        required init?(coder aDecoder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-    }
-   
 }

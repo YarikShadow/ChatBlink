@@ -17,6 +17,7 @@
 		843A12561E72008800A0C614 /* SideBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843A12551E72008800A0C614 /* SideBar.swift */; };
 		843A12581E7200CA00A0C614 /* SideBarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843A12571E7200CA00A0C614 /* SideBarTableViewController.swift */; };
 		8442F2BD1E7DDBA50077EDD1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8442F2BC1E7DDBA50077EDD1 /* Message.swift */; };
+		8442F2C01E7EAC7E0077EDD1 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8442F2BF1E7EAC7E0077EDD1 /* UserCell.swift */; };
 		8482C48B1E6636F500D08449 /* ChatLogonew.png in Resources */ = {isa = PBXBuildFile; fileRef = 8482C48A1E6636F500D08449 /* ChatLogonew.png */; };
 		84EC3FF91E658FCE0067A017 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC3FF81E658FCE0067A017 /* AppDelegate.swift */; };
 		84EC3FFB1E658FCE0067A017 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC3FFA1E658FCE0067A017 /* ViewController.swift */; };
@@ -65,6 +66,7 @@
 		843A12551E72008800A0C614 /* SideBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBar.swift; sourceTree = "<group>"; };
 		843A12571E7200CA00A0C614 /* SideBarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarTableViewController.swift; sourceTree = "<group>"; };
 		8442F2BC1E7DDBA50077EDD1 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		8442F2BF1E7EAC7E0077EDD1 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		8482C48A1E6636F500D08449 /* ChatLogonew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChatLogonew.png; sourceTree = "<group>"; };
 		84EC3FF51E658FCE0067A017 /* ChatBlink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatBlink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84EC3FF81E658FCE0067A017 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -150,6 +152,14 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		8442F2BE1E7EAC690077EDD1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8442F2BF1E7EAC7E0077EDD1 /* UserCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		84EC3FEC1E658FCD0067A017 = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +185,7 @@
 		84EC3FF71E658FCE0067A017 /* ChatBlink */ = {
 			isa = PBXGroup;
 			children = (
+				8442F2BE1E7EAC690077EDD1 /* View */,
 				84FAC9721E6C69EE009A0F3F /* Helpers */,
 				8407E9241E66F68500CD57FF /* Model */,
 				8407E9251E66F6B100CD57FF /* Controllers */,
@@ -524,6 +535,7 @@
 				843A12561E72008800A0C614 /* SideBar.swift in Sources */,
 				8442F2BD1E7DDBA50077EDD1 /* Message.swift in Sources */,
 				84FAC9741E6C6A14009A0F3F /* Extensions.swift in Sources */,
+				8442F2C01E7EAC7E0077EDD1 /* UserCell.swift in Sources */,
 				84EC40271E6594590067A017 /* LoginController.swift in Sources */,
 				8407E9271E66F6DA00CD57FF /* User.swift in Sources */,
 				84EC3FF91E658FCE0067A017 /* AppDelegate.swift in Sources */,
