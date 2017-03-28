@@ -59,8 +59,37 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate {
         containerView.addSubview(inputTextField)
         containerView.addSubview(lineSeparatorView)
         setupInputComponetes()
+        registerForKeyboardNotifications()
         
                 
+    }
+    
+    deinit {
+        removeKeabordNotifications()
+    }
+    
+    func removeKeabordNotifications() {
+        NotificationCenter.default.removeObserver(self,  name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        
+        NotificationCenter.default.removeObserver(self,  name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+
+    }
+    
+    func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keybordWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keybordWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func keybordWillShow(_ notification: Notification) {
+        let userInfo = notification.userInfo
+        let keabordFrameSize = (userInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: keabordFrameSize.height).isActive = true
+        
+    }
+    
+    func keybordWillHide() {
+          containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
     func setupInputComponetes(){

@@ -6,18 +6,13 @@ target 'ChatBlink' do
   use_frameworks!
 
   # Pods for ChatBlink
-
+pod ‘FacebookCore’
+pod ‘FacebookLogin’
+pod ‘FacebookShare’
+pod ‘Alamofire’
+pod ’SwiftyJSON’
 pod 'Firebase/Database'
 pod 'Firebase/Auth'
 pod 'Firebase/Storage'
-  target 'ChatBlinkTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'ChatBlinkUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
+   
 end

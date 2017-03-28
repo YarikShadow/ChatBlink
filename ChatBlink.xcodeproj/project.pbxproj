@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1ECBE13AD1D19EC188C54CA7 /* Pods_ChatBlinkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D3C114DAAECA327EBDADEF6 /* Pods_ChatBlinkUITests.framework */; };
 		2B9C8C5F3521124B818F59BC /* Pods_ChatBlink.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 618F44D1BF7863743F0DC2B2 /* Pods_ChatBlink.framework */; };
 		8407E9231E66E97300CD57FF /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407E9221E66E97300CD57FF /* NewMessageController.swift */; };
 		8407E9271E66F6DA00CD57FF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407E9261E66F6DA00CD57FF /* User.swift */; };
@@ -18,6 +17,7 @@
 		843A12581E7200CA00A0C614 /* SideBarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843A12571E7200CA00A0C614 /* SideBarTableViewController.swift */; };
 		8442F2BD1E7DDBA50077EDD1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8442F2BC1E7DDBA50077EDD1 /* Message.swift */; };
 		8442F2C01E7EAC7E0077EDD1 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8442F2BF1E7EAC7E0077EDD1 /* UserCell.swift */; };
+		844E98EB1E8979E8002D9710 /* FacebookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844E98EA1E8979E8002D9710 /* FacebookManager.swift */; };
 		8482C48B1E6636F500D08449 /* ChatLogonew.png in Resources */ = {isa = PBXBuildFile; fileRef = 8482C48A1E6636F500D08449 /* ChatLogonew.png */; };
 		84EC3FF91E658FCE0067A017 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC3FF81E658FCE0067A017 /* AppDelegate.swift */; };
 		84EC3FFB1E658FCE0067A017 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC3FFA1E658FCE0067A017 /* ViewController.swift */; };
@@ -30,7 +30,6 @@
 		84EC40291E65AC1F0067A017 /* ChatLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EC40281E65AC1F0067A017 /* ChatLogo.png */; };
 		84EC402B1E65B5C20067A017 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84EC402A1E65B5C20067A017 /* GoogleService-Info.plist */; };
 		84FAC9741E6C6A14009A0F3F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FAC9731E6C6A14009A0F3F /* Extensions.swift */; };
-		B7792598E8BA95EEF02CF7FE /* Pods_ChatBlinkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E40C6947628344FFE99D85C /* Pods_ChatBlinkTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,13 +50,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		229CD6E2156DAC6BBC9973B5 /* Pods-ChatBlinkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatBlinkTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChatBlinkTests/Pods-ChatBlinkTests.release.xcconfig"; sourceTree = "<group>"; };
 		32C541841F7982C575EC215C /* Pods-ChatBlink.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatBlink.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChatBlink/Pods-ChatBlink.release.xcconfig"; sourceTree = "<group>"; };
 		3E40C6947628344FFE99D85C /* Pods_ChatBlinkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatBlinkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ECE17EAB62F2AEE7A2342E2 /* Pods-ChatBlink.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatBlink.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChatBlink/Pods-ChatBlink.debug.xcconfig"; sourceTree = "<group>"; };
 		618F44D1BF7863743F0DC2B2 /* Pods_ChatBlink.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatBlink.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D3C114DAAECA327EBDADEF6 /* Pods_ChatBlinkUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatBlinkUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		835A4257C0D5ED070DC0572A /* Pods-ChatBlinkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatBlinkTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChatBlinkTests/Pods-ChatBlinkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8407E9221E66E97300CD57FF /* NewMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		8407E9261E66F6DA00CD57FF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		840A2AAF1E79345C0083FD99 /* NotificationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +64,8 @@
 		843A12571E7200CA00A0C614 /* SideBarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarTableViewController.swift; sourceTree = "<group>"; };
 		8442F2BC1E7DDBA50077EDD1 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		8442F2BF1E7EAC7E0077EDD1 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		844E98EA1E8979E8002D9710 /* FacebookManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookManager.swift; sourceTree = "<group>"; };
+		844E98EC1E897C06002D9710 /* ChatBlink.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChatBlink.entitlements; sourceTree = "<group>"; };
 		8482C48A1E6636F500D08449 /* ChatLogonew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChatLogonew.png; sourceTree = "<group>"; };
 		84EC3FF51E658FCE0067A017 /* ChatBlink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatBlink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84EC3FF81E658FCE0067A017 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,8 +84,6 @@
 		84EC40281E65AC1F0067A017 /* ChatLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ChatLogo.png; path = ../../../Documents/ChatLogo.png; sourceTree = "<group>"; };
 		84EC402A1E65B5C20067A017 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		84FAC9731E6C6A14009A0F3F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		B98A36B180CD60E5CBEE79D6 /* Pods-ChatBlinkUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatBlinkUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChatBlinkUITests/Pods-ChatBlinkUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		F3DD1F0AC21F194A9F7DD4A4 /* Pods-ChatBlinkUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatBlinkUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChatBlinkUITests/Pods-ChatBlinkUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +99,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7792598E8BA95EEF02CF7FE /* Pods_ChatBlinkTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,7 +106,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1ECBE13AD1D19EC188C54CA7 /* Pods_ChatBlinkUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,10 +117,6 @@
 			children = (
 				5ECE17EAB62F2AEE7A2342E2 /* Pods-ChatBlink.debug.xcconfig */,
 				32C541841F7982C575EC215C /* Pods-ChatBlink.release.xcconfig */,
-				835A4257C0D5ED070DC0572A /* Pods-ChatBlinkTests.debug.xcconfig */,
-				229CD6E2156DAC6BBC9973B5 /* Pods-ChatBlinkTests.release.xcconfig */,
-				B98A36B180CD60E5CBEE79D6 /* Pods-ChatBlinkUITests.debug.xcconfig */,
-				F3DD1F0AC21F194A9F7DD4A4 /* Pods-ChatBlinkUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -185,6 +176,7 @@
 		84EC3FF71E658FCE0067A017 /* ChatBlink */ = {
 			isa = PBXGroup;
 			children = (
+				844E98EC1E897C06002D9710 /* ChatBlink.entitlements */,
 				8442F2BE1E7EAC690077EDD1 /* View */,
 				84FAC9721E6C69EE009A0F3F /* Helpers */,
 				8407E9241E66F68500CD57FF /* Model */,
@@ -225,6 +217,7 @@
 			children = (
 				84FAC9731E6C6A14009A0F3F /* Extensions.swift */,
 				843A12551E72008800A0C614 /* SideBar.swift */,
+				844E98EA1E8979E8002D9710 /* FacebookManager.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -266,12 +259,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84EC40201E658FCF0067A017 /* Build configuration list for PBXNativeTarget "ChatBlinkTests" */;
 			buildPhases = (
-				FEE7C18F15DED682CDCAA890 /* [CP] Check Pods Manifest.lock */,
 				84EC40051E658FCF0067A017 /* Sources */,
 				84EC40061E658FCF0067A017 /* Frameworks */,
 				84EC40071E658FCF0067A017 /* Resources */,
-				6E99E57F0E8C4A04154BF771 /* [CP] Embed Pods Frameworks */,
-				B77B2B7762861BFCC561F925 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -287,12 +277,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84EC40231E658FCF0067A017 /* Build configuration list for PBXNativeTarget "ChatBlinkUITests" */;
 			buildPhases = (
-				4A95AE20E4EE2714009E61A7 /* [CP] Check Pods Manifest.lock */,
 				84EC40101E658FCF0067A017 /* Sources */,
 				84EC40111E658FCF0067A017 /* Frameworks */,
 				84EC40121E658FCF0067A017 /* Resources */,
-				39F1FE3A03DF1B40A161BF9A /* [CP] Embed Pods Frameworks */,
-				0D552E728FA497F8C4E640F8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -318,6 +305,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = PX8TS3NF66;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					84EC40081E658FCF0067A017 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -385,21 +377,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0D552E728FA497F8C4E640F8 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChatBlinkUITests/Pods-ChatBlinkUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		1ACC42FF43A096918CECBB17 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -413,51 +390,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		39F1FE3A03DF1B40A161BF9A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChatBlinkUITests/Pods-ChatBlinkUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4A95AE20E4EE2714009E61A7 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		6E99E57F0E8C4A04154BF771 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChatBlinkTests/Pods-ChatBlinkTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9CACEDB5A4AB4AFDA1AE991E /* [CP] Copy Pods Resources */ = {
@@ -475,21 +407,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChatBlink/Pods-ChatBlink-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B77B2B7762861BFCC561F925 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChatBlinkTests/Pods-ChatBlinkTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		C01EA67A44F5EAE0862B35F1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -505,21 +422,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChatBlink/Pods-ChatBlink-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FEE7C18F15DED682CDCAA890 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -532,6 +434,7 @@
 				8407E9231E66E97300CD57FF /* NewMessageController.swift in Sources */,
 				843A12581E7200CA00A0C614 /* SideBarTableViewController.swift in Sources */,
 				84EC3FFB1E658FCE0067A017 /* ViewController.swift in Sources */,
+				844E98EB1E8979E8002D9710 /* FacebookManager.swift in Sources */,
 				843A12561E72008800A0C614 /* SideBar.swift in Sources */,
 				8442F2BD1E7DDBA50077EDD1 /* Message.swift in Sources */,
 				84FAC9741E6C6A14009A0F3F /* Extensions.swift in Sources */,
@@ -691,6 +594,7 @@
 			baseConfigurationReference = 5ECE17EAB62F2AEE7A2342E2 /* Pods-ChatBlink.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ChatBlink/ChatBlink.entitlements;
 				DEVELOPMENT_TEAM = PX8TS3NF66;
 				INFOPLIST_FILE = ChatBlink/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -705,6 +609,7 @@
 			baseConfigurationReference = 32C541841F7982C575EC215C /* Pods-ChatBlink.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ChatBlink/ChatBlink.entitlements;
 				DEVELOPMENT_TEAM = PX8TS3NF66;
 				INFOPLIST_FILE = ChatBlink/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -716,7 +621,6 @@
 		};
 		84EC40211E658FCF0067A017 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 835A4257C0D5ED070DC0572A /* Pods-ChatBlinkTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -732,7 +636,6 @@
 		};
 		84EC40221E658FCF0067A017 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 229CD6E2156DAC6BBC9973B5 /* Pods-ChatBlinkTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -748,7 +651,6 @@
 		};
 		84EC40241E658FCF0067A017 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B98A36B180CD60E5CBEE79D6 /* Pods-ChatBlinkUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = PX8TS3NF66;
@@ -763,7 +665,6 @@
 		};
 		84EC40251E658FCF0067A017 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F3DD1F0AC21F194A9F7DD4A4 /* Pods-ChatBlinkUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = PX8TS3NF66;

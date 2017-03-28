@@ -8,8 +8,9 @@
 
 import UIKit
 import Firebase
+import FBSDKLoginKit
 
-class ViewController: UITableViewController, SideBarDelegate {
+class ViewController: UITableViewController {
     
     var sideBar:SideBar = SideBar()
     var users = [User]()
@@ -57,8 +58,7 @@ class ViewController: UITableViewController, SideBarDelegate {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: image , style: .plain, target: self, action: #selector(handleNewMessage))
         
-        sideBar = SideBar(sourceView: self.view, menuItems:["Day", "Night"])
-        sideBar.delegate = self
+ 
         
         
         checkIfUserLoggedIn()
@@ -258,31 +258,18 @@ class ViewController: UITableViewController, SideBarDelegate {
         transition.subtype = kCATransitionFromLeft
       self.view.window!.layer.add(transition, forKey: nil)
       present(loginController, animated: false, completion: nil)
-        
+      FacebookManager.shared.logOut()
     }
     
     func handleNewMessage() {
         let newMessageController = NewMessageController()
         newMessageController.messageController = self
         let navController = UINavigationController(rootViewController: newMessageController)
+        transition.subtype = kCATransitionFromRight
         self.view.window!.layer.add(transition, forKey: nil)
         present(navController, animated: false, completion: nil)
     }
     
-    func sideBarDidSelectButtonAtIndex(index: Int) {
-        
-        
-        switch index {
-        case 0 :
-                view.backgroundColor = UIColor.white
-                sideBar.showSideBar(shouldOpen: false)
-        case 1 :
-                view.backgroundColor = UIColor.black
-                sideBar.showSideBar(shouldOpen: false)
-            
-        default : break
-        }
-    }
-
+  
 }
 

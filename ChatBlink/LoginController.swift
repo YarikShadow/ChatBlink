@@ -8,11 +8,13 @@
 
 import UIKit
 import Firebase
+import FBSDKLoginKit
 
 class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate, UITextFieldDelegate  {
     
     var messageController : ViewController?
-
+    var loginSucsess = false
+    
     
 /////// UI Elements
    //Container
@@ -112,6 +114,7 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
         return sc
     }()
     
+    //image picker button
     lazy var imagePickerButton:UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = UIColor.white //(r: 80, g: 101, b: 161)
@@ -127,6 +130,34 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
 
         
         return button
+    }()
+    
+    //fb login button 
+    lazy var facebookLoginButton:UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "FBIcon")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.masksToBounds = true
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleFacebookLogin)))
+     
+        
+        return imageView
+    }()
+
+    //vk login button
+    lazy var vkLoginButton:UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "VKIconTrue")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.masksToBounds = true
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleFacebookLogin)))
+        imageView.layer.cornerRadius = 8
+        
+        return imageView
     }()
     
     
@@ -163,6 +194,8 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
         view.addSubview(profileImageView)
         view.addSubview(loginRegisterSegmentedControl)
         view.addSubview(imagePickerButton)
+        view.addSubview(facebookLoginButton)
+        view.addSubview(vkLoginButton)
         
         view.addGestureRecognizer(tap)
         
@@ -171,12 +204,25 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
         setupLoginRegisterButton()
         setupProfileImageView()
         setupLoginRegisterSegmentedControl()
+        setupFacebookLoginButton()
+        setupVKLoginButton()
         
         
     }
     
-  
-
+    override func viewDidAppear(_ animated: Bool) {
+        if FBSDKAccessToken.current() != nil && loginSucsess == true {
+            
+            let transition: CATransition = CATransition() // animation
+            transition.duration = 0.5
+            transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            transition.type = kCATransitionReveal
+            transition.subtype = kCATransitionFromRight
+            self.view.window!.layer.add(transition, forKey: nil)
+            dismiss(animated: false, completion: nil)
+        }
+    }
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         gradientLayer.frame = view.layer.bounds
@@ -198,7 +244,14 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.allowsEditing = true
-        present(picker, animated: true, completion: nil)
+        
+            let transition: CATransition = CATransition() // animation
+            transition.duration = 0.5
+            transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            transition.type = kCATransitionReveal
+            transition.subtype = kCATransitionFromLeft
+           self.view.window!.layer.add(transition, forKey: nil)
+        present(picker, animated: false, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -215,11 +268,12 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
             profileImageView.image = selectedImage
             profileImageView.layer.cornerRadius = 5
         }
+      
          dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
+       dismiss(animated: true, completion: nil)
     }
     ///// MARK1 end
     
@@ -257,6 +311,12 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
         loginRegisterTopAnchor = loginRegisterButton.topAnchor.constraint(equalTo: loginRegisterSegmentedControl.selectedSegmentIndex == 1 ? imagePickerButton.bottomAnchor : inputsContanierView.bottomAnchor, constant: 12)
         loginRegisterTopAnchor?.isActive = true
         
+//        //changing FB button
+//        facebookLoginButtonTopAnchor?.isActive = false
+//        facebookLoginButtonTopAnchor = facebookLoginButton.topAnchor.constraint(equalTo: loginRegisterSegmentedControl.selectedSegmentIndex == 1 ? imagePickerButton.bottomAnchor : inputsContanierView.bottomAnchor, constant: 12)
+//        facebookLoginButtonTopAnchor?.isActive = true
+
+        
     }
     
     func handleLoginRegister() {
@@ -268,12 +328,22 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
     }
     
     func handleRegister() {
-        
+ 
         self.view.endEditing(true)
-        guard let email = emailTextField.text, let password = passwordTextField.text, let name = nameTextField.text else {
-            print("ffff")
-        return
+        
+        if FBSDKAccessToken.current() != nil {
+            emailTextField.text = User.currentUser.email
+            passwordTextField.text = User.currentUser.name
+            nameTextField.text = User.currentUser.name
+            profileImageView.image = try! UIImage(data: Data(contentsOf: URL(string: User.currentUser.profileImageUrl!)!))
         }
+            guard let email = emailTextField.text, let password = passwordTextField.text, let name = nameTextField.text else {
+            print("ffff")
+                return
+            }
+       
+            
+          
         
         //creating user
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user: FIRUser?, error) in
@@ -338,6 +408,29 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
 
     }
     
+  
+    
+    func handleFacebookLogin() {
+       
+        if FBSDKAccessToken.current() != nil {
+            self.loginSucsess = true
+            self.viewDidAppear(true)
+       } else {
+            
+            FacebookManager.shared.logIn(withReadPermissions: ["public_profile", "email"], from: self, handler: {(result, error) in
+                if error == nil {
+                    FacebookManager.getUserData(completion: {
+                        self.loginSucsess = true
+                        self.viewDidAppear(true)
+                    })
+                    
+                }
+            })
+   
+        }
+            
+    }
+    
     func handleLogin() {
         if emailTextField.text != ""  && passwordTextField.text != "" {
             guard let email = emailTextField.text, let password = passwordTextField.text else {
@@ -370,7 +463,7 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
             
         })
             
-        }else {
+        } else {
             let alert = UIAlertController(title: "Empty fields", message: "Please fill all fields", preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alert.addAction(cancelAction)
@@ -405,14 +498,16 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
         imagePickerButton.widthAnchor.constraint(equalTo: inputsContanierView.widthAnchor).isActive = true
         imagePickerButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        
     }
+    
+    
     
     var inputsConstrainerViewHeightAnchor: NSLayoutConstraint?
     var nameTextFieldHeightAnchor: NSLayoutConstraint?
     var emailTextFieldHeightAnchor: NSLayoutConstraint?
     var passwordTextFieldHeightAchor: NSLayoutConstraint?
     var loginRegisterTopAnchor: NSLayoutConstraint?
+    var facebookLoginButtonTopAnchor: NSLayoutConstraint?
     
     func setupLoginRegisterButton() {
         loginRegisterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -423,8 +518,33 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
 
     }
     
+    func setupFacebookLoginButton() {
+//        facebookLoginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+//        facebookLoginButtonTopAnchor = facebookLoginButton.topAnchor.constraint(equalTo: loginRegisterButton.bottomAnchor, constant: 12)
+//        facebookLoginButtonTopAnchor?.isActive = true
+//        facebookLoginButton.widthAnchor.constraint(equalTo: inputsContanierView.widthAnchor).isActive = true
+//       facebookLoginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        facebookLoginButton.leftAnchor.constraint(equalTo: loginRegisterButton.leftAnchor).isActive = true
+        
+        facebookLoginButton.topAnchor.constraint(equalTo: loginRegisterButton.bottomAnchor, constant: 12).isActive = true
+        
+        
+        facebookLoginButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        facebookLoginButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+
+     }
+    func setupVKLoginButton() {
+        vkLoginButton.leftAnchor.constraint(equalTo: facebookLoginButton.rightAnchor, constant: 12).isActive = true
+    
+        vkLoginButton.topAnchor.constraint(equalTo: loginRegisterButton.bottomAnchor, constant: 12).isActive = true
     
     
+        vkLoginButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+    
+        vkLoginButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+    }
     func setupInputsContainerView() {
         // Constrains of the container
         inputsContanierView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
